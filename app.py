@@ -3,6 +3,8 @@ from fastapi.responses import JSONResponse
 from ultralytics import YOLO
 from PIL import Image
 import io
+import os
+
 
 app = FastAPI()
 model = YOLO("best.pt")  # Load your trained YOLOv8 model
@@ -17,6 +19,6 @@ async def predict(file: UploadFile = File(...)):
     
     return JSONResponse(content={"detections": detections})
 
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
+
