@@ -7,7 +7,7 @@ import os
 
 
 app = FastAPI()
-model = YOLO("best.pt")  # Load your trained YOLOv8 model
+model = YOLO("yolo11n.pt")  # Load your trained YOLOv8 model
 
 @app.post("/predict/")
 async def predict(file: UploadFile = File(...)):
